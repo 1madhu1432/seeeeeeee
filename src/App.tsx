@@ -9,13 +9,10 @@ import { WhyUs } from './components/WhyUs';
 import { Process } from './components/Process';
 import { CtaBand } from './components/CtaBand';
 import { Contact } from './components/Contact';
-import { ProductModal } from './components/ProductModal';
 import { Footer } from './components/Footer';
-import type { CategoryItem } from './data/companyData';
 
 export function App() {
-  const [selectedCategoryForEnquiry, setSelectedCategoryForEnquiry] = useState<string>('Fresh Seafood');
-  const [activeModalCategory, setActiveModalCategory] = useState<CategoryItem | null>(null);
+  const [selectedCategoryForEnquiry, setSelectedCategoryForEnquiry] = useState<string>('Seafood');
 
   const handleOpenContact = (categoryName?: string) => {
     if (categoryName) {
@@ -36,60 +33,52 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-cyan-500 selection:text-white">
-      {/* Header & Navigation */}
+      {/* 1. Header & Sticky Navigation */}
       <Navbar onOpenContact={handleOpenContact} />
 
-      {/* Main Page Content Flow */}
+      {/* Main Sections */}
       <main className="flex-1">
-        {/* 1. HERO */}
+        {/* HERO SECTION */}
         <Hero 
           onExploreProducts={handleExploreProducts} 
           onContactUs={() => handleOpenContact()} 
         />
 
-        {/* 2. BUSINESS INTRODUCTION */}
+        {/* ABOUT SECTION */}
         <About />
 
-        {/* 3. PRODUCT CATEGORIES */}
+        {/* PRODUCTS SECTION */}
         <Products 
           onSelectCategoryForEnquiry={handleOpenContact}
-          onViewCategoryDetails={(cat) => setActiveModalCategory(cat)}
         />
 
-        {/* 4. TRADING SERVICES */}
+        {/* SERVICES SECTION */}
         <Services 
           onEnquire={() => handleOpenContact()}
         />
 
-        {/* 5. DUBAI / GLOBAL TRADE */}
+        {/* GLOBAL TRADE SECTION */}
         <GlobalTrade />
 
-        {/* 6. WHY BLUE BAHAR */}
+        {/* WHY US SECTION */}
         <WhyUs />
 
-        {/* 7. BUSINESS PROCESS */}
+        {/* BUSINESS PROCESS SECTION */}
         <Process />
 
-        {/* 8. CONTACT CTA */}
+        {/* CTA BAND */}
         <CtaBand 
           onSendEnquiry={() => handleOpenContact()}
         />
 
-        {/* 9. CONTACT */}
+        {/* CONTACT SECTION */}
         <Contact 
           initialProductInterest={selectedCategoryForEnquiry}
         />
       </main>
 
-      {/* 10. FOOTER */}
+      {/* FOOTER */}
       <Footer />
-
-      {/* Category Details Modal */}
-      <ProductModal 
-        category={activeModalCategory}
-        onClose={() => setActiveModalCategory(null)}
-        onEnquireCategory={handleOpenContact}
-      />
     </div>
   );
 }

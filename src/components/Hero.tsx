@@ -1,6 +1,7 @@
 import React from 'react';
 import { COMPANY_INFO } from '../data/companyData';
-import { ArrowRight, Globe, Anchor, Ship, Snowflake, Waves } from 'lucide-react';
+import { WaveSeparator } from './WaveSeparator';
+import { ArrowRight, Globe, Waves, Anchor, Ship } from 'lucide-react';
 
 interface HeroProps {
   onExploreProducts: () => void;
@@ -9,58 +10,58 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onExploreProducts, onContactUs }) => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden bg-slate-950">
+    <section id="home" className="relative min-h-screen flex flex-col justify-between pt-28 overflow-hidden bg-slate-950">
       
-      {/* Background Image: Realistic Dubai Arabian Sea Coastline */}
+      {/* Background Image: Realistic Dubai Coastline + Arabian Sea */}
       <div className="absolute inset-0 z-0">
         <img
           src="/images/hero/dubai_ocean.jpg"
-          alt="Dubai Arabian Sea Coastline & International Maritime Shipping"
+          alt="Dubai Coastline, Arabian Sea & Maritime Skyline"
           className="w-full h-full object-cover object-center scale-105 transform animate-pulse duration-10000"
           style={{ animationDuration: '25s' }}
         />
-        {/* Layered Cinematic Overlays */}
+        {/* Dark Navy Gradient Overlay */}
         <div className="absolute inset-0 bg-slate-950/75" />
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-slate-950/50" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-950/50" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/70" />
         <div className="absolute inset-0 bg-cyan-950/20 mix-blend-overlay" />
       </div>
 
-      {/* Ambient Lighting Orbs */}
-      <div className="absolute top-1/3 left-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+      {/* Ambient Ocean Glow Effects */}
+      <div className="absolute top-1/4 left-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
 
-      {/* Main Content Container: Split 2-Column Layout */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      {/* Main Content Container */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* LEFT SIDE CONTENT */}
           <div className="lg:col-span-7 space-y-6 text-left">
             
-            {/* Eyebrow */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-bold uppercase tracking-widest backdrop-blur-md shadow-xl">
+            {/* Small Label */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/90 border border-cyan-500/40 text-cyan-300 text-xs font-bold uppercase tracking-widest backdrop-blur-md shadow-xl">
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
               <Globe className="w-3.5 h-3.5 text-cyan-400" />
               <span>{COMPANY_INFO.eyebrow}</span>
             </div>
 
-            {/* Main Headline */}
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white uppercase font-heading leading-none">
+            {/* Main Heading */}
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white uppercase font-heading leading-tight">
               Connecting Dubai <br />
               <span className="ocean-gradient-text">to Global Markets</span>
             </h1>
 
-            {/* Subhead */}
-            <p className="text-xl sm:text-2xl font-bold text-cyan-300 tracking-wide font-heading">
+            {/* Secondary Heading */}
+            <p className="text-lg sm:text-2xl font-bold text-cyan-300 tracking-wide font-heading">
               {COMPANY_INFO.heroSubheading}
             </p>
 
-            {/* Client Specification Description */}
+            {/* Description */}
             <p className="text-base sm:text-lg text-slate-300 max-w-2xl font-normal leading-relaxed">
               "{COMPANY_INFO.heroDescription}"
             </p>
 
-            {/* CTAs */}
+            {/* Buttons */}
             <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
               <button
                 onClick={onExploreProducts}
@@ -78,35 +79,27 @@ export const Hero: React.FC<HeroProps> = ({ onExploreProducts, onContactUs }) =>
               </button>
             </div>
 
-            {/* Subtle Trade Badges */}
-            <div className="pt-6 border-t border-slate-800/80 flex flex-wrap items-center gap-6 text-xs font-semibold text-slate-400 uppercase tracking-wider">
-              <div className="flex items-center gap-2">
-                <Ship className="w-4 h-4 text-cyan-400" />
-                <span>MARITIME LOGISTICS</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Snowflake className="w-4 h-4 text-cyan-400" />
-                <span>SUB-ZERO COLD CHAIN</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Anchor className="w-4 h-4 text-cyan-400" />
-                <span>AL GARHOUD, DUBAI</span>
+            {/* Bottom Text Badge */}
+            <div className="pt-6 border-t border-slate-800/80">
+              <div className="text-xs font-bold text-cyan-400 uppercase tracking-widest flex items-center gap-2">
+                <Waves className="w-4 h-4 text-cyan-400" />
+                <span>{COMPANY_INFO.tagline}</span>
               </div>
             </div>
 
           </div>
 
-          {/* RIGHT SIDE VISUAL COMPOSITION (Dubai Ocean + Seafood + Reefer Trading) */}
+          {/* RIGHT SIDE VISUAL SHOWCASE */}
           <div className="lg:col-span-5 relative">
             <div className="relative mx-auto max-w-md lg:max-w-none">
               
-              {/* Main Floating Card Showcase */}
+              {/* Main Card Feature */}
               <div className="glass-panel p-4 sm:p-6 rounded-3xl border border-cyan-500/30 shadow-2xl space-y-4 backdrop-blur-xl relative overflow-hidden group">
                 
                 <div className="relative h-64 sm:h-72 rounded-2xl overflow-hidden bg-slate-950">
                   <img
                     src="/images/products/fresh_seafood.jpg"
-                    alt="Fresh Ocean Seafood Trade"
+                    alt="Blue Bahar Commercial Seafood Trade"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
@@ -120,7 +113,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreProducts, onContactUs }) =>
                   </div>
                 </div>
 
-                {/* Secondary Inset Card */}
+                {/* Secondary Inset Stats / Badges */}
                 <div className="grid grid-cols-2 gap-3">
                   <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-cyan-950 border border-cyan-500/30 flex items-center justify-center shrink-0">
@@ -134,11 +127,11 @@ export const Hero: React.FC<HeroProps> = ({ onExploreProducts, onContactUs }) =>
 
                   <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-cyan-950 border border-cyan-500/30 flex items-center justify-center shrink-0">
-                      <Globe className="w-4 h-4 text-cyan-400" />
+                      <Anchor className="w-4 h-4 text-cyan-400" />
                     </div>
                     <div>
                       <div className="text-[10px] font-bold text-slate-400 uppercase">HUB LOCATION</div>
-                      <div className="text-xs font-bold text-white">Dubai Hub</div>
+                      <div className="text-xs font-bold text-white">Al Garhoud</div>
                     </div>
                   </div>
                 </div>
@@ -150,6 +143,9 @@ export const Hero: React.FC<HeroProps> = ({ onExploreProducts, onContactUs }) =>
 
         </div>
       </div>
+
+      {/* Wave Separator Transitioning into Light About Section */}
+      <WaveSeparator fillColor="#f8fafc" />
 
     </section>
   );
