@@ -4,20 +4,22 @@ import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { Products } from './components/Products';
 import { Services } from './components/Services';
-import { WhyUs } from './components/WhyUs';
 import { GlobalTrade } from './components/GlobalTrade';
+import { WhyUs } from './components/WhyUs';
+import { Process } from './components/Process';
+import { CtaBand } from './components/CtaBand';
 import { Contact } from './components/Contact';
 import { ProductModal } from './components/ProductModal';
 import { Footer } from './components/Footer';
-import type { ProductItem } from './data/companyData';
+import type { CategoryItem } from './data/companyData';
 
 export function App() {
-  const [selectedProductForEnquiry, setSelectedProductForEnquiry] = useState<string>('Fresh Seafood');
-  const [activeModalProduct, setActiveModalProduct] = useState<ProductItem | null>(null);
+  const [selectedCategoryForEnquiry, setSelectedCategoryForEnquiry] = useState<string>('Fresh Seafood');
+  const [activeModalCategory, setActiveModalCategory] = useState<CategoryItem | null>(null);
 
-  const handleOpenContact = (productName?: string) => {
-    if (productName) {
-      setSelectedProductForEnquiry(productName);
+  const handleOpenContact = (categoryName?: string) => {
+    if (categoryName) {
+      setSelectedCategoryForEnquiry(categoryName);
     }
     const contactSection = document.getElementById('contact');
     if (contactSection) {
@@ -33,45 +35,60 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-cyan-500 selection:text-white">
       {/* Header & Navigation */}
       <Navbar onOpenContact={handleOpenContact} />
 
-      {/* Main Sections */}
+      {/* Main Page Content Flow */}
       <main className="flex-1">
+        {/* 1. HERO */}
         <Hero 
           onExploreProducts={handleExploreProducts} 
           onContactUs={() => handleOpenContact()} 
         />
 
+        {/* 2. BUSINESS INTRODUCTION */}
         <About />
 
+        {/* 3. PRODUCT CATEGORIES */}
         <Products 
-          onSelectProductForEnquiry={handleOpenContact}
-          onViewProductDetails={(prod) => setActiveModalProduct(prod)}
+          onSelectCategoryForEnquiry={handleOpenContact}
+          onViewCategoryDetails={(cat) => setActiveModalCategory(cat)}
         />
 
+        {/* 4. TRADING SERVICES */}
         <Services 
           onEnquire={() => handleOpenContact()}
         />
 
-        <WhyUs />
-
+        {/* 5. DUBAI / GLOBAL TRADE */}
         <GlobalTrade />
 
+        {/* 6. WHY BLUE BAHAR */}
+        <WhyUs />
+
+        {/* 7. BUSINESS PROCESS */}
+        <Process />
+
+        {/* 8. CONTACT CTA */}
+        <CtaBand 
+          onSendEnquiry={() => handleOpenContact()}
+        />
+
+        {/* 9. CONTACT */}
         <Contact 
-          initialProductInterest={selectedProductForEnquiry}
+          initialProductInterest={selectedCategoryForEnquiry}
         />
       </main>
 
-      {/* Footer */}
+      {/* 10. FOOTER */}
       <Footer />
 
-      {/* Product Details Modal */}
+      {/* Category Details Modal */}
       <ProductModal 
-        product={activeModalProduct}
-        onClose={() => setActiveModalProduct(null)}
-        onEnquireProduct={handleOpenContact}
+        category={activeModalCategory}
+        onClose={() => setActiveModalCategory(null)}
+        onEnquireCategory={handleOpenContact}
       />
     </div>
   );

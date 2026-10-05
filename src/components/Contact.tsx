@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { COMPANY_INFO, PRODUCTS_DATA } from '../data/companyData';
-import { Phone, Mail, MapPin, Send, CheckCircle2, Building, MessageSquare, User, Briefcase, PhoneCall, AlertCircle } from 'lucide-react';
+import { COMPANY_INFO, PRODUCT_CATEGORIES } from '../data/companyData';
+import { Phone, Mail, MapPin, Send, CheckCircle2, User, Briefcase, PhoneCall, AlertCircle, MessageSquare } from 'lucide-react';
 
 interface ContactProps {
   initialProductInterest?: string;
@@ -12,7 +12,7 @@ export const Contact: React.FC<ContactProps> = ({ initialProductInterest }) => {
     company: '',
     email: '',
     phone: '',
-    productInterest: initialProductInterest || 'Fresh Seafood',
+    productInterest: initialProductInterest || PRODUCT_CATEGORIES[0].name,
     message: ''
   });
 
@@ -35,7 +35,7 @@ export const Contact: React.FC<ContactProps> = ({ initialProductInterest }) => {
       newErrors.email = 'Please enter a valid email address';
     }
     if (!formData.phone.trim()) newErrors.phone = 'Phone number is required';
-    if (!formData.message.trim()) newErrors.message = 'Please include details of your enquiry';
+    if (!formData.message.trim()) newErrors.message = 'Please enter your message or enquiry details';
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -44,41 +44,36 @@ export const Contact: React.FC<ContactProps> = ({ initialProductInterest }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (validate()) {
-      // Static frontend processing - no API call
       setSubmitted(true);
-      // Reset form after short delay
       setFormData({
         name: '',
         company: '',
         email: '',
         phone: '',
-        productInterest: 'Fresh Seafood',
+        productInterest: PRODUCT_CATEGORIES[0].name,
         message: ''
       });
     }
   };
 
   return (
-    <section id="contact" className="py-24 bg-slate-950 relative overflow-hidden">
-      {/* Background Lighting */}
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-950/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/4 left-0 w-96 h-96 bg-blue-950/20 rounded-full blur-3xl pointer-events-none" />
-
+    <section id="contact" className="py-28 bg-slate-950 relative overflow-hidden border-t border-slate-800">
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-950 border border-cyan-500/30 text-cyan-400 text-xs font-semibold uppercase tracking-widest">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950 border border-cyan-500/30 text-cyan-400 text-xs font-bold uppercase tracking-widest">
             <MessageSquare className="w-3.5 h-3.5" />
-            <span>Connect With Our Trade Desk</span>
+            <span>COMMERCIAL ENQUIRIES</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight font-heading">
-            Get In Touch <span className="ocean-gradient-text">With Us</span>
+            Contact <span className="ocean-gradient-text">Blue Bahar</span>
           </h2>
 
           <p className="text-base sm:text-lg text-slate-300">
-            Reach out to our Dubai team for global seafood inquiries, bulk pricing, and B2B trading partnerships.
+            Connect directly with our Dubai trade desk for commercial quotations and international B2B opportunities.
           </p>
 
           <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-600 mx-auto rounded-full" />
@@ -86,72 +81,68 @@ export const Contact: React.FC<ContactProps> = ({ initialProductInterest }) => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* Left Column: Official Contact Information */}
+          {/* Left Column: Official Contact Card */}
           <div className="lg:col-span-5 space-y-8">
             
-            {/* Main Company Card */}
-            <div className="glass-panel p-8 rounded-3xl border border-cyan-500/20 space-y-6 shadow-2xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 translate-x-8 -translate-y-8 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none" />
-
+            <div className="glass-panel p-8 sm:p-10 rounded-3xl border border-cyan-500/30 space-y-8 shadow-2xl relative overflow-hidden bg-slate-950">
+              
               <div>
-                <h3 className="text-2xl font-extrabold text-white font-heading tracking-tight">
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-heading">
                   {COMPANY_INFO.name}
                 </h3>
-                <p className="text-xs font-semibold text-cyan-400 mt-1 uppercase tracking-wider">
+                <p className="text-xs font-bold text-cyan-400 mt-2 uppercase tracking-wider">
                   {COMPANY_INFO.businessScope}
                 </p>
               </div>
 
-              <div className="space-y-5 pt-4 border-t border-slate-800">
+              <div className="space-y-6 pt-6 border-t border-slate-800">
                 
-                {/* Phones */}
+                {/* Phone Numbers */}
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-cyan-950 border border-cyan-500/30 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-cyan-950 border border-cyan-500/30 flex items-center justify-center shrink-0 mt-1">
                     <Phone className="w-5 h-5 text-cyan-400" />
                   </div>
                   <div className="space-y-1">
-                    <div className="text-xs font-semibold text-slate-400 uppercase">Trade Desk Phone</div>
-                    {COMPANY_INFO.phones.map((phone, i) => (
-                      <div key={i}>
-                        <a
-                          href={`tel:${phone.replace(/\s+/g, '')}`}
-                          className="text-sm sm:text-base font-medium text-slate-200 hover:text-cyan-400 transition-colors block"
-                        >
-                          {phone}
-                        </a>
-                      </div>
+                    <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Telephone</div>
+                    {COMPANY_INFO.phones.map((phone, idx) => (
+                      <a
+                        key={idx}
+                        href={`tel:${phone.replace(/\s+/g, '')}`}
+                        className="text-base font-bold text-white hover:text-cyan-400 transition-colors block"
+                      >
+                        {phone}
+                      </a>
                     ))}
                   </div>
                 </div>
 
-                {/* Emails */}
+                {/* Email Addresses */}
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-cyan-950 border border-cyan-500/30 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-cyan-950 border border-cyan-500/30 flex items-center justify-center shrink-0 mt-1">
                     <Mail className="w-5 h-5 text-cyan-400" />
                   </div>
                   <div className="space-y-1">
-                    <div className="text-xs font-semibold text-slate-400 uppercase">Email Inquiries</div>
-                    {COMPANY_INFO.emails.map((email, i) => (
-                      <div key={i}>
-                        <a
-                          href={`mailto:${email}`}
-                          className="text-sm font-medium text-slate-200 hover:text-cyan-400 transition-colors block"
-                        >
-                          {email}
-                        </a>
-                      </div>
+                    <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Email</div>
+                    {COMPANY_INFO.emails.map((email, idx) => (
+                      <a
+                        key={idx}
+                        href={`mailto:${email}`}
+                        className="text-sm font-semibold text-white hover:text-cyan-400 transition-colors block"
+                      >
+                        {email}
+                      </a>
                     ))}
                   </div>
                 </div>
 
-                {/* Address */}
+                {/* Physical Address */}
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-cyan-950 border border-cyan-500/30 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-cyan-950 border border-cyan-500/30 flex items-center justify-center shrink-0 mt-1">
                     <MapPin className="w-5 h-5 text-cyan-400" />
                   </div>
                   <div className="space-y-1">
-                    <div className="text-xs font-semibold text-slate-400 uppercase">Registered Address</div>
-                    <div className="text-sm text-slate-200 leading-relaxed">
+                    <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Address</div>
+                    <div className="text-sm text-slate-200 leading-relaxed font-medium">
                       {COMPANY_INFO.address.office}<br />
                       {COMPANY_INFO.address.building}<br />
                       {COMPANY_INFO.address.area}, {COMPANY_INFO.address.city}, {COMPANY_INFO.address.country}
@@ -161,54 +152,49 @@ export const Contact: React.FC<ContactProps> = ({ initialProductInterest }) => {
 
               </div>
 
-              {/* Business Hours Note */}
-              <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-xs text-slate-400 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                <span>Trade desk operates Sunday – Thursday, 8:00 AM – 6:00 PM (GST)</span>
-              </div>
             </div>
 
           </div>
 
           {/* Right Column: Static Frontend Enquiry Form */}
           <div className="lg:col-span-7">
-            <div className="glass-panel p-8 sm:p-10 rounded-3xl border border-slate-800 shadow-2xl relative">
+            <div className="glass-panel p-8 sm:p-10 rounded-3xl border border-slate-800 shadow-2xl bg-slate-950">
               
               <h3 className="text-2xl font-bold text-white mb-2 font-heading">
-                Submit Product Enquiry
+                Trade Enquiry Form
               </h3>
               <p className="text-sm text-slate-400 mb-8">
-                Fill out your requirement below. Our trade representatives will respond with complete specifications and B2B pricing.
+                Please submit your commercial interest below. Our Dubai desk will review and respond promptly.
               </p>
 
-              {/* Required Success Message Banner */}
+              {/* Exact Client Requirement Success Banner */}
               {submitted && (
-                <div className="mb-8 p-6 rounded-2xl bg-cyan-950/90 border border-cyan-400/50 text-cyan-100 shadow-xl space-y-2 animate-fadeIn">
+                <div className="mb-8 p-6 rounded-2xl bg-cyan-950/90 border border-cyan-400/50 text-cyan-100 shadow-2xl space-y-2">
                   <div className="flex items-center gap-3 text-cyan-300 font-bold text-lg">
                     <CheckCircle2 className="w-6 h-6 text-cyan-400 shrink-0" />
-                    <span>Enquiry Received!</span>
+                    <span>Enquiry Sent</span>
                   </div>
-                  <p className="text-base font-semibold text-white pl-9">
+                  <p className="text-base font-bold text-white pl-9">
                     "Thank you for your enquiry. Our team will contact you soon."
                   </p>
                   <div className="pt-2 pl-9">
                     <button
                       onClick={() => setSubmitted(false)}
-                      className="text-xs font-bold text-cyan-400 hover:text-cyan-300 underline"
+                      className="text-xs font-bold text-cyan-400 hover:text-cyan-300 underline uppercase tracking-wider"
                     >
-                      Send another enquiry
+                      Submit another enquiry
                     </button>
                   </div>
                 </div>
               )}
 
-              {/* Form Element */}
+              {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-5" noValidate>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  {/* Name */}
+                  {/* Full Name */}
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+                    <label className="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
                       <User className="w-3.5 h-3.5 text-cyan-400" />
                       Full Name *
                     </label>
@@ -216,8 +202,8 @@ export const Contact: React.FC<ContactProps> = ({ initialProductInterest }) => {
                       type="text"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="e.g. John Smith"
-                      className={`w-full px-4 py-3 rounded-xl bg-slate-900 border ${
+                      placeholder="Your full name"
+                      className={`w-full px-4 py-3.5 rounded-xl bg-slate-900 border ${
                         errors.name ? 'border-red-500' : 'border-slate-800 focus:border-cyan-500'
                       } text-white text-sm outline-none transition-colors placeholder:text-slate-600`}
                     />
@@ -228,9 +214,9 @@ export const Contact: React.FC<ContactProps> = ({ initialProductInterest }) => {
                     )}
                   </div>
 
-                  {/* Company */}
+                  {/* Company Name */}
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+                    <label className="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
                       <Briefcase className="w-3.5 h-3.5 text-cyan-400" />
                       Company Name *
                     </label>
@@ -238,8 +224,8 @@ export const Contact: React.FC<ContactProps> = ({ initialProductInterest }) => {
                       type="text"
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      placeholder="e.g. Global Foods Ltd"
-                      className={`w-full px-4 py-3 rounded-xl bg-slate-900 border ${
+                      placeholder="Your company name"
+                      className={`w-full px-4 py-3.5 rounded-xl bg-slate-900 border ${
                         errors.company ? 'border-red-500' : 'border-slate-800 focus:border-cyan-500'
                       } text-white text-sm outline-none transition-colors placeholder:text-slate-600`}
                     />
@@ -254,16 +240,16 @@ export const Contact: React.FC<ContactProps> = ({ initialProductInterest }) => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   {/* Email */}
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+                    <label className="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
                       <Mail className="w-3.5 h-3.5 text-cyan-400" />
-                      Email Address *
+                      Email *
                     </label>
                     <input
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="name@company.com"
-                      className={`w-full px-4 py-3 rounded-xl bg-slate-900 border ${
+                      className={`w-full px-4 py-3.5 rounded-xl bg-slate-900 border ${
                         errors.email ? 'border-red-500' : 'border-slate-800 focus:border-cyan-500'
                       } text-white text-sm outline-none transition-colors placeholder:text-slate-600`}
                     />
@@ -276,16 +262,16 @@ export const Contact: React.FC<ContactProps> = ({ initialProductInterest }) => {
 
                   {/* Phone */}
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+                    <label className="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
                       <PhoneCall className="w-3.5 h-3.5 text-cyan-400" />
-                      Phone / WhatsApp *
+                      Phone *
                     </label>
                     <input
                       type="tel"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="+971 50 000 0000"
-                      className={`w-full px-4 py-3 rounded-xl bg-slate-900 border ${
+                      className={`w-full px-4 py-3.5 rounded-xl bg-slate-900 border ${
                         errors.phone ? 'border-red-500' : 'border-slate-800 focus:border-cyan-500'
                       } text-white text-sm outline-none transition-colors placeholder:text-slate-600`}
                     />
@@ -299,38 +285,36 @@ export const Contact: React.FC<ContactProps> = ({ initialProductInterest }) => {
 
                 {/* Product Interest Dropdown */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
-                    <Building className="w-3.5 h-3.5 text-cyan-400" />
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate-300">
                     Product Interest *
                   </label>
                   <select
                     value={formData.productInterest}
                     onChange={(e) => setFormData({ ...formData, productInterest: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 focus:border-cyan-500 text-white text-sm outline-none transition-colors"
+                    className="w-full px-4 py-3.5 rounded-xl bg-slate-900 border border-slate-800 focus:border-cyan-500 text-white text-sm outline-none transition-colors font-medium"
                   >
-                    {PRODUCTS_DATA.map((p) => (
-                      <option key={p.id} value={p.name} className="bg-slate-950 text-white">
-                        {p.name} ({p.category})
+                    {PRODUCT_CATEGORIES.map((cat) => (
+                      <option key={cat.id} value={cat.name} className="bg-slate-950 text-white">
+                        {cat.name}
                       </option>
                     ))}
-                    <option value="General Trade Quotation" className="bg-slate-950 text-white">
-                      General B2B Trade Quotation / Import Export
+                    <option value="General Trading Enquiry" className="bg-slate-950 text-white">
+                      General Trading Enquiry / Import Export
                     </option>
                   </select>
                 </div>
 
                 {/* Message */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
-                    <MessageSquare className="w-3.5 h-3.5 text-cyan-400" />
-                    Enquiry Details & Volume Requirements *
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate-300">
+                    Message *
                   </label>
                   <textarea
                     rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Specify target quantities, destination port, packaging requirements, or delivery schedule..."
-                    className={`w-full px-4 py-3 rounded-xl bg-slate-900 border ${
+                    placeholder="Describe your commercial requirements..."
+                    className={`w-full px-4 py-3.5 rounded-xl bg-slate-900 border ${
                       errors.message ? 'border-red-500' : 'border-slate-800 focus:border-cyan-500'
                     } text-white text-sm outline-none transition-colors placeholder:text-slate-600 resize-none`}
                   />
@@ -345,16 +329,12 @@ export const Contact: React.FC<ContactProps> = ({ initialProductInterest }) => {
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full py-4 rounded-xl font-bold text-sm bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-xl shadow-cyan-500/30 hover:shadow-cyan-500/50 transition-all flex items-center justify-center gap-2 group"
+                    className="w-full py-4 rounded-xl font-extrabold text-xs uppercase tracking-wider bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-xl shadow-cyan-500/30 transition-all flex items-center justify-center gap-2 group"
                   >
-                    <span>Send Enquiry</span>
+                    <span>SEND ENQUIRY</span>
                     <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
-
-                <p className="text-[11px] text-slate-500 text-center">
-                  Notice: This is a frontend-only demonstration form. Form validation executes locally in browser.
-                </p>
 
               </form>
 

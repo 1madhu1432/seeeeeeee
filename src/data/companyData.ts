@@ -1,13 +1,10 @@
-export interface ProductItem {
+export interface CategoryItem {
   id: string;
   name: string;
-  category: 'Fresh Seafood' | 'Frozen Seafood' | 'Frozen Food Products' | 'Marine Products' | 'Bulk Trading';
   shortDescription: string;
   fullDescription: string;
   image: string;
-  features: string[];
-  packaging: string;
-  origin: string;
+  highlights: string[];
 }
 
 export interface ServiceItem {
@@ -17,6 +14,7 @@ export interface ServiceItem {
   description: string;
   iconName: string;
   highlights: string[];
+  image: string;
 }
 
 export interface WhyUsItem {
@@ -26,10 +24,20 @@ export interface WhyUsItem {
   iconName: string;
 }
 
+export interface ProcessStep {
+  number: string;
+  title: string;
+  subtitle: string;
+  description: string;
+}
+
 export const COMPANY_INFO = {
   name: "BLUE BAHAR TRADING LLC",
-  tagline: "Connecting Dubai to Global Seafood Markets",
-  subTagline: "Quality Seafood & Frozen Products. Global Trading. Trusted Partnerships.",
+  eyebrow: "BLUE BAHAR TRADING LLC",
+  heroHeading: "Connecting Dubai to Global Markets",
+  heroSubheading: "Seafood & Frozen Products • Import • Export • Trading",
+  heroDescription: "Blue Bahar Trading LLC is a Dubai-based trading company focused on seafood, frozen products, import, export and international B2B trading.",
+  tagline: "Import • Export • Seafood • Frozen Products • Trading",
   businessScope: "IMPORT | EXPORT | SEAFOOD | FROZEN PRODUCTS | TRADING",
   phones: [
     "+971 56 16 52 555",
@@ -47,193 +55,197 @@ export const COMPANY_INFO = {
     country: "UAE",
     full: "Office No. 104F, B90, HNS Business Center, Al Garhoud, Dubai, UAE"
   },
-  established: "Dubai, UAE",
-  keyHighlights: [
-    "Global Seafood Supply Chain",
-    "Cold Chain Integrity",
-    "Dubai International Hub",
-    "Strict Quality Standards",
-    "HACCP & ISO Compliant Supply",
-    "B2B Wholesale Trading"
-  ]
+  locationHighlight: "Dubai, UAE"
 };
 
-export const PRODUCTS_DATA: ProductItem[] = [
+// ONLY the 5 official client-specified categories (No fake individual product lists)
+export const PRODUCT_CATEGORIES: CategoryItem[] = [
   {
     id: "fresh-seafood",
     name: "Fresh Seafood",
-    category: "Fresh Seafood",
-    shortDescription: "Daily catches of premium ocean salmon, red snapper, kingfish, sea bass, and wild tiger prawns.",
-    fullDescription: "Sourced daily from sustainable ocean vessels and certified coastal fisheries. Our fresh seafood is handled with strict temperature-controlled logistics, guaranteeing maximum peak freshness from ocean to kitchen.",
+    shortDescription: "Chilled fresh ocean catches sourced and handled for commercial seafood trading.",
+    fullDescription: "Chilled fresh seafood selection managed under strict temperature logistics from coastal marine harvest directly into Dubai's trade network.",
     image: "/images/products/fresh_seafood.jpg",
-    features: [
-      "Daily fresh ocean catch",
-      "Air-freighted under strict chill chains",
-      "HACCP certified processing",
-      "Custom gutting, fillet & whole fish options"
-    ],
-    packaging: "Chilled Iced Thermocol Boxes (10kg, 20kg, 25kg)",
-    origin: "Arabian Gulf, Atlantic Ocean, Indian Ocean"
+    highlights: [
+      "Chilled marine catch",
+      "Strict chill-chain logistics",
+      "B2B commercial wholesale",
+      "Dubai trade dispatch"
+    ]
   },
   {
     id: "frozen-seafood",
     name: "Frozen Seafood",
-    category: "Frozen Seafood",
-    shortDescription: "Individually Quick Frozen (IQF) king crab legs, prawns, squid rings, octopus, and fish fillets.",
-    fullDescription: "Flash-frozen at sea or in state-of-the-art coastal processing centers to seal in nutrients and texture. Zero moisture loss, long shelf-life, and consistent commercial grade quality.",
+    shortDescription: "Premium flash-frozen seafood items preserved for long-term commercial trade.",
+    fullDescription: "High-grade frozen seafood preserved at sub-zero temperatures, providing consistent shelf-life and volume availability for international supply.",
     image: "/images/products/frozen_seafood.jpg",
-    features: [
-      "IQF (Individually Quick Frozen) technology",
-      "Glazing options from 0% to 20%",
-      "Long-term stability in cold storage",
-      "Premium commercial & retail export grade"
-    ],
-    packaging: "Master Carton with inner poly-bag (10kg - 25kg)",
-    origin: "North Atlantic, South East Asia, South America"
+    highlights: [
+      "Flash-frozen preservation",
+      "Sub-zero storage integrity",
+      "Commercial export grade",
+      "Container load supply"
+    ]
   },
   {
     id: "frozen-food-products",
     name: "Frozen Food Products",
-    category: "Frozen Food Products",
-    shortDescription: "High-grade commercial frozen food items, frozen poultry, beef cuts, and IQF vegetables for B2B supply.",
-    fullDescription: "Extensive selection of commercial frozen food solutions catering to hotel chains, supermarket groups, catering companies, and food distributors across Dubai and international trade routes.",
+    shortDescription: "Commercial frozen food items tailored for enterprise food supply contracts.",
+    fullDescription: "Comprehensive frozen food product lines managed for wholesale commercial distribution and international B2B trade partnerships.",
     image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80",
-    features: [
-      "Halal certified meat & poultry lines",
-      "IQF flash-frozen vegetables & berries",
-      "Full traceability & lot inspection",
-      "Custom bulk food processing agreements"
-    ],
-    packaging: "Export Packaging / Custom OEM branding available",
-    origin: "South America, Europe, Australia"
+    highlights: [
+      "Wholesale frozen supply",
+      "Commercial distribution",
+      "Temperature-controlled handling",
+      "Bulk trade options"
+    ]
   },
   {
     id: "marine-products",
     name: "Marine Products",
-    category: "Marine Products",
-    shortDescription: "Exotic and specialty ocean harvest, dried seafood, sea cucumber, fish maws, and gourmet marine delicacies.",
-    fullDescription: "Specialized high-value ocean harvest for international seafood traders and premium Asian culinary markets. Rigorously inspected for purity, dryness, and size grading.",
+    shortDescription: "Specialized ocean marine harvest and specialized commercial sea products.",
+    fullDescription: "Specialty marine harvest products managed for regional and international trading networks, adhering to strict trade standards.",
     image: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=1200&q=80",
-    features: [
-      "Wild-harvested sea cucumber & dried products",
-      "Gourmet grade dried fish maws & shellfish",
-      "Strict moisture content control",
-      "Direct source procurement"
-    ],
-    packaging: "Sealed export drums & vacuum poly packs",
-    origin: "Pacific Ocean, Indian Ocean"
+    highlights: [
+      "Specialty ocean harvest",
+      "Commercial marine supply",
+      "Graded trade quality",
+      "International trade routing"
+    ]
   },
   {
     id: "bulk-trading",
     name: "Bulk Trading",
-    category: "Bulk Trading",
-    shortDescription: "Container-load wholesale ocean shipping, contract supply agreements, and international reefer logistics.",
-    fullDescription: "Full-container-load (FCL) and multi-product consolidated shipping solutions. We manage complete export documentation, bill of lading, health certificates, and customs clearance.",
+    shortDescription: "Wholesale container-load trade management, reefer shipping, and import/export.",
+    fullDescription: "Full container load (FCL) and bulk reefer trade operations connecting international suppliers with commercial buyers via Dubai.",
     image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=80",
-    features: [
-      "20ft & 40ft Reefer container shipments",
-      "Multi-port logistics & transshipment",
-      "Complete export documentation & phytosanitary certs",
-      "Flexible B2B contract terms"
-    ],
-    packaging: "Palletized Reefer Container Loads",
-    origin: "Global Hubs via Jebel Ali Port, Dubai"
+    highlights: [
+      "FCL Reefer container trade",
+      "Import & Export facilitation",
+      "Port-to-port logistics",
+      "B2B trade contracts"
+    ]
   }
 ];
 
-export const SERVICES_DATA: ServiceItem[] = [
+export const TRADING_SERVICES: ServiceItem[] = [
   {
     id: "import",
-    title: "Import Operations",
-    subtitle: "Bringing World-Class Seafood into Dubai & GCC",
-    description: "End-to-end management of ocean and air import cargo into Dubai. We streamline port clearance, municipality inspections, cold-storage warehousing, and local distribution.",
+    title: "IMPORT",
+    subtitle: "Dubai Trade Gateway Inflow",
+    description: "Professional management of ocean and air import shipments entering Dubai's major commercial logistics ports.",
     iconName: "Ship",
-    highlights: ["Jebel Ali Port customs clearance", "Temperature-monitored clearance", "Municipal health compliance", "Dubai cold-chain logistics"]
+    highlights: ["Customs clearance management", "Port handling in Dubai", "Cold chain receipt"],
+    image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: "export",
-    title: "Export Services",
-    subtitle: "Global Reach from Dubai Logistics Hub",
-    description: "Leveraging Dubai's strategic position to export high-grade seafood and frozen commodities to markets across the Middle East, Asia, Europe, and Africa.",
+    title: "EXPORT",
+    subtitle: "International Outflow Routing",
+    description: "Export operations facilitating the distribution of seafood and frozen commodities from Dubai to global markets.",
     iconName: "Globe",
-    highlights: ["Global reefer container shipments", "Comprehensive trade documentation", "Health & origin certificates", "Seamless air & ocean freight"]
+    highlights: ["Export trade documentation", "Reefer container logistics", "Global shipment routing"],
+    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80"
   },
   {
     id: "seafood-trading",
-    title: "Seafood Trading",
-    subtitle: "B2B Procurement & Contract Execution",
-    description: "Direct bridge between international fisheries and business buyers. We facilitate volume pricing, quality verification, and reliable delivery schedules.",
+    title: "SEAFOOD TRADING",
+    subtitle: "B2B Market Facilitation",
+    description: "Commercial seafood trading bridging producers, wholesalers, and international business buyers.",
     iconName: "Anchor",
-    highlights: ["Direct fishery procurement", "Volume contract pricing", "Quality verification at origin", "Consistent supply schedules"]
+    highlights: ["Direct B2B procurement", "Commercial volume pricing", "Reliable delivery schedules"],
+    image: "/images/products/fresh_seafood.jpg"
   },
   {
     id: "frozen-products",
-    title: "Frozen Products Supply",
-    subtitle: "Sub-Zero Cold Chain Infrastructure",
-    description: "Specialized frozen food supply chain operating at continuous sub-zero temperatures (-18°C to -25°C) ensuring uncompromised texture, flavor, and food safety.",
+    title: "FROZEN PRODUCTS",
+    subtitle: "Sub-Zero Temperature Logistics",
+    description: "Trade solutions focused on frozen food commodities maintaining strict thermal chain continuity.",
     iconName: "Snowflake",
-    highlights: ["Continuous sub-zero cold chain", "IQF flash freezing standard", "Warehouse inventory holding", "Zero temperature breakdown"]
+    highlights: ["Sub-zero temperature control", "Frozen inventory management", "Commercial storage handling"],
+    image: "/images/products/frozen_seafood.jpg"
   },
   {
     id: "global-sourcing",
-    title: "Global Sourcing",
-    subtitle: "Vetted International Supplier Network",
-    description: "Established partnerships with eco-certified fisheries, aqua-farms, and processing plants across 5 continents to ensure year-round supply stability.",
+    title: "GLOBAL SOURCING",
+    subtitle: "Strategic Supply Networks",
+    description: "Sourcing capabilities connecting vetted international fisheries and frozen product suppliers.",
     iconName: "Compass",
-    highlights: ["Certified sustainable fisheries", "Year-round availability", "Diverse species selection", "Strict partner audit standards"]
+    highlights: ["Vetted supplier networks", "Market supply stability", "Diverse product availability"],
+    image: "/images/hero/dubai_ocean.jpg"
   },
   {
     id: "b2b-supply",
-    title: "B2B Wholesale Supply",
-    subtitle: "Custom Solutions for Enterprise Clients",
-    description: "Tailored supply contracts for luxury hotel groups, restaurant chains, wholesale distributors, processing factories, and supermarket networks.",
+    title: "B2B SUPPLY",
+    subtitle: "Commercial Contract Fulfillment",
+    description: "Tailored supply agreements designed for enterprise buyers, distributors, and commercial trade partners.",
     iconName: "Building2",
-    highlights: ["Dedicated account managers", "Custom packaging & portioning", "Flexible credit & contract terms", "Emergency stock replenishment"]
+    highlights: ["Enterprise supply contracts", "Wholesale order execution", "Dedicated account support"],
+    image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"
   }
 ];
 
-export const WHY_US_DATA: WhyUsItem[] = [
+export const WHY_BLUE_BAHAR: WhyUsItem[] = [
   {
-    id: "quality",
+    id: "sourcing",
     title: "Quality-Focused Sourcing",
-    description: "We work exclusively with certified fisheries and processors enforcing rigorous HACCP, ISO, and EU food safety standards.",
+    description: "We prioritize product integrity through structured sourcing procedures across our supplier network.",
     iconName: "ShieldCheck"
   },
   {
     id: "partnerships",
     title: "Reliable Partnerships",
-    description: "Long-term relationships built on transparency, competitive pricing, and strict adherence to contract timelines.",
+    description: "Building long-term transparent relationships focused on contract fulfillment and professional service.",
     iconName: "Handshake"
   },
   {
     id: "trading",
     title: "International Trading",
-    description: "Deep expertise in international trade logistics, letter of credit execution, customs regulations, and reefer shipping.",
+    description: "Commercial expertise in import, export, international documentation, and maritime reefer logistics.",
     iconName: "TrendingUp"
   },
   {
     id: "service",
     title: "Professional Service",
-    description: "Dedicated B2B account desk offering prompt communication, rapid quote turnarounds, and personalized trade support.",
+    description: "Dedicated trade support committed to clear communication and responsive enquiry turnaround.",
     iconName: "UserCheck"
   },
   {
     id: "b2b",
     title: "B2B Focus",
-    description: "Structured specifically for wholesale buyers, importers, hotel chains, food distributors, and institutional clients.",
+    description: "Structured specifically to serve commercial buyers, wholesalers, and institutional trading entities.",
     iconName: "Briefcase"
   },
   {
     id: "dubai",
     title: "Dubai-Based Operations",
-    description: "Prime location in Al Garhoud, Dubai, giving direct access to Jebel Ali Port, Dubai World Central, and global logistics corridors.",
+    description: "Strategically headquartered in Al Garhoud, Dubai, tapping into premier global logistics corridors.",
     iconName: "MapPin"
   }
 ];
 
-export const COMPANY_STATS = [
-  { label: "Location Hub", value: "Dubai, UAE" },
-  { label: "Cold Storage Standard", value: "-25°C Ultra" },
-  { label: "B2B Order Capacity", value: "Bulk Containers" },
-  { label: "Quality Standards", value: "100% Certified" }
+export const BUSINESS_PROCESS: ProcessStep[] = [
+  {
+    number: "01",
+    title: "SOURCE",
+    subtitle: "Strategic Sourcing",
+    description: "Identifying and connecting quality seafood and frozen product supply lines."
+  },
+  {
+    number: "02",
+    title: "QUALITY",
+    subtitle: "Standard Verification",
+    description: "Ensuring cold chain integrity and product standards prior to trade routing."
+  },
+  {
+    number: "03",
+    title: "TRADE",
+    subtitle: "Import & Export",
+    description: "Executing international logistics, customs, and port clearance operations in Dubai."
+  },
+  {
+    number: "04",
+    title: "PARTNER",
+    subtitle: "Long-Term B2B Supply",
+    description: "Delivering reliable, scheduled commercial fulfillment to business buyers worldwide."
+  }
 ];
