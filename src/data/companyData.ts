@@ -12,6 +12,7 @@ export interface ServiceItem {
   description: string;
   iconName: string;
   features?: string[];
+  image?: string;
 }
 
 export interface WhyUsItem {
@@ -25,6 +26,16 @@ export interface ProcessStep {
   number: string;
   title: string;
   description: string;
+  image?: string;
+}
+
+export interface GalleryItem {
+  id: string;
+  title: string;
+  category: string;
+  description: string;
+  image: string;
+  filterTag: 'harvest' | 'packaging' | 'processing' | 'fish' | 'logistics';
 }
 
 export const COMPANY_INFO = {
@@ -53,13 +64,13 @@ export const COMPANY_INFO = {
   locationHighlight: "Al Garhoud, Dubai, UAE"
 };
 
-// 4 Official Product Categories with real images
+// Official Product Categories
 export const PRODUCT_CATEGORIES: ProductCategory[] = [
   {
     id: "seafood-products",
     name: "Seafood Products",
     shortDescription: "Finest quality wild-caught and aquaculture harvest processed to strict international cold-chain export benchmarks.",
-    image: "/images/products/fresh_seafood.jpg",
+    image: "/images/products/giant_tiger_prawns.jpg",
     items: [
       "Frozen Vannamei Shrimp",
       "Black Tiger Shrimp",
@@ -74,7 +85,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
     id: "poultry-products",
     name: "Poultry Products",
     shortDescription: "Premium quality frozen poultry and processed cuts sourced from certified international producers.",
-    image: "/images/products/real_poultry.jpg",
+    image: "https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=1200&q=80",
     items: [
       "Frozen Chicken",
       "Chicken Parts",
@@ -85,7 +96,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
     id: "meat-products",
     name: "Meat Products",
     shortDescription: "Grade-A frozen mutton, succulent lamb products, and prime butchery meat cuts tailored for commercial wholesale.",
-    image: "/images/products/real_meat.jpg",
+    image: "https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=1200&q=80",
     items: [
       "Frozen Mutton",
       "Lamb Products",
@@ -96,7 +107,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
     id: "agricultural-products",
     name: "Agricultural Products",
     shortDescription: "Freshly harvested produce, aromatic whole and ground spices, and essential bulk food commodities.",
-    image: "/images/products/real_vegetables.jpg",
+    image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1200&q=80",
     items: [
       "Fresh Vegetables",
       "Spices",
@@ -105,34 +116,135 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
   }
 ];
 
-export const REAL_CLIENT_GALLERY = [
+// Comprehensive Authentic Operational & Product Specifications Gallery (16 Real Photos)
+export const CLIENT_SHOWCASE_GALLERY: GalleryItem[] = [
   {
-    id: "gallery-1",
-    title: "Peeled Prawns (21/25 Count)",
-    category: "Seafood Products",
-    description: "Premium processed peeled raw shrimp packed for wholesale commercial trade.",
+    id: "showcase-harvest-bulk",
+    title: "Large-Scale Pond Harvest & Crate Sorting",
+    category: "POND HARVEST",
+    filterTag: "harvest",
+    description: "Multi-ton fresh shrimp harvest netted and sorted at origin aquaculture ponds ready for cold-chain transit.",
+    image: "/images/products/bulk_field_harvest.jpg"
+  },
+  {
+    id: "showcase-harvest-macro",
+    title: "Fresh Head-On Vannamei Shrimp",
+    category: "LIVE HARVEST",
+    filterTag: "harvest",
+    description: "Pristine translucent shell quality and intact whiskers demonstrating immediate pond-to-crate freshness.",
+    image: "/images/products/vannamei_macro.jpg"
+  },
+  {
+    id: "showcase-harvest-giant",
+    title: "Giant Black Tiger Prawns",
+    category: "PREMIUM HARVEST",
+    filterTag: "harvest",
+    description: "Freshly harvested jumbo grade black tiger prawns exhibiting firm muscle texture and vibrant natural luster.",
+    image: "/images/products/giant_tiger_prawns.jpg"
+  },
+  {
+    id: "showcase-harvest-wide",
+    title: "High-Volume Field Crating Operation",
+    category: "ORIGIN SOURCING",
+    filterTag: "harvest",
+    description: "Dozens of color-coded harvest crates organized directly by pond banks for rapid sorting and temperature control.",
+    image: "/images/products/wide_field_harvest.jpg"
+  },
+  {
+    id: "showcase-shrimp-pd",
+    title: "Peeled & Deveined (PD) Raw Shrimp (21/25)",
+    category: "SEAFOOD SPECIFICATIONS",
+    filterTag: "processing",
+    description: "Uniformly sized 21/25 count raw peeled and deveined shrimp ready for commercial foodservice and B2B trade.",
     image: "/images/products/peeled_shrimp_21_25.jpg"
   },
   {
-    id: "gallery-2",
-    title: "White Fish Fillets",
-    category: "Seafood Products",
-    description: "Cleaned, flash-frozen white fish fillets sorted for commercial distribution.",
+    id: "showcase-shrimp-frozen",
+    title: "Flash-Frozen Peeled Prawns (21/25)",
+    category: "COLD STORAGE COMMODITIES",
+    filterTag: "processing",
+    description: "Individually quick-frozen (IQF) peeled prawns maintaining optimum moisture retention and delicate flavor profile.",
+    image: "/images/products/frozen_prawns_21_25.jpg"
+  },
+  {
+    id: "showcase-fish-fillets",
+    title: "Cleaned White Fish Fillets",
+    category: "FISH COMMODITIES",
+    filterTag: "fish",
+    description: "Skinless and boneless white fish fillets calibrated on grading tables for international supermarket supply.",
     image: "/images/products/white_fish_fillets.jpg"
   },
   {
-    id: "gallery-3",
-    title: "Whole Gutted Fish",
-    category: "Seafood Products",
-    description: "Commercial whole gutted fish packed in cold chain crates for B2B supply.",
+    id: "showcase-fish-whole",
+    title: "Whole Gutted & Cleaned Fish",
+    category: "FISH COMMODITIES",
+    filterTag: "fish",
+    description: "Commercially cleaned and gutted whole fish sorted in hygienic cold storage bins for wholesale distribution.",
     image: "/images/products/whole_gutted_fish.jpg"
   },
   {
-    id: "gallery-4",
-    title: "Fresh Jumbo Tiger Prawns",
-    category: "Seafood Products",
-    description: "Sourced high-grade jumbo prawns for regional and export markets.",
-    image: "/images/products/jumbo_tiger_prawns.jpg"
+    id: "showcase-packaging-pouches",
+    title: "Blue Bahar Branded Retail Pouches",
+    category: "RETAIL PACKAGING",
+    filterTag: "packaging",
+    description: "Official Blue Bahar branded 500g frozen Jumbo Shrimps and Calamari Rings pouches for retail distribution.",
+    image: "/images/products/blue_bahar_packaging.jpg"
+  },
+  {
+    id: "showcase-packaging-box",
+    title: "Export Boxed Jumbo Tiger Shrimps",
+    category: "WHOLESALE EXPORT",
+    filterTag: "packaging",
+    description: "Uniformly graded head-on jumbo black tiger shrimp packaged in pristine export boxes for international food markets.",
+    image: "/images/products/jumbo_tiger_box.jpg"
+  },
+  {
+    id: "showcase-processing-sterile",
+    title: "Hygienic Cleanroom Shrimp Sorting",
+    category: "QUALITY CONTROL",
+    filterTag: "processing",
+    description: "Trained operators in sanitized protective gear inspecting, sorting, and grading fresh shrimp on stainless steel lines.",
+    image: "/images/products/sterile_shrimp_processing.jpg"
+  },
+  {
+    id: "showcase-processing-conveyor",
+    title: "Automated Conveyor Packing Line",
+    category: "FACTORY OPERATIONS",
+    filterTag: "processing",
+    description: "High-speed automated checkpoints ensuring precise weight and freshness standards prior to cold-chain sealing.",
+    image: "/images/products/shrimp_processing_conveyor.jpg"
+  },
+  {
+    id: "showcase-logistics-warehouse",
+    title: "Cold Storage Master Carton Logistics",
+    category: "WAREHOUSING",
+    filterTag: "logistics",
+    description: "Inspected and sealed master cartons stacked in state-of-the-art cold-storage bays awaiting container dispatch.",
+    image: "/images/products/cold_storage_warehouse.jpg"
+  },
+  {
+    id: "showcase-logistics-airfreight",
+    title: "Air Freight & Live Seafood Shipping",
+    category: "COLD CHAIN LOGISTICS",
+    filterTag: "logistics",
+    description: "Insulated temperature-controlled Blue Bahar containers ensuring live marine cargo reaches overseas destinations safely.",
+    image: "/images/about/blue_bahar_air_freight.jpg"
+  },
+  {
+    id: "showcase-logistics-executive",
+    title: "Executive Audit with UAE Partners",
+    category: "EXECUTIVE AUDIT",
+    filterTag: "logistics",
+    description: "Blue Bahar management reviewing fresh seafood inventory with Emirati trade partners at Dubai logistics facility.",
+    image: "/images/about/executive_inspection.jpg"
+  },
+  {
+    id: "showcase-commodities-cuts",
+    title: "Premium Frozen Shellfish & Cuts",
+    category: "EXPORT COMMODITIES",
+    filterTag: "fish",
+    description: "Cold water lobster tails, sea scallops, jumbo cooked shrimp, calamari rings, and crab legs for wholesale dispatch.",
+    image: "/images/products/premium_frozen_seafood.jpg"
   }
 ];
 
@@ -142,31 +254,36 @@ export const TRADING_SERVICES: ServiceItem[] = [
     id: "import-services",
     title: "Import Services",
     description: "Global sourcing and procurement of quality food products.",
-    iconName: "Ship"
+    iconName: "Ship",
+    image: "/images/about/market_procurement_inspection.jpg"
   },
   {
     id: "export-services",
     title: "Export Services",
     description: "Reliable export solutions to international markets.",
-    iconName: "Globe"
+    iconName: "Globe",
+    image: "/images/about/blue_bahar_air_freight.jpg"
   },
   {
     id: "wholesale-distribution",
     title: "Wholesale Distribution",
     description: "Bulk supply solutions for distributors and retailers.",
-    iconName: "Boxes"
+    iconName: "Boxes",
+    image: "/images/products/cold_storage_warehouse.jpg"
   },
   {
     id: "retail-supply",
     title: "Retail Supply",
     description: "Serving supermarkets, restaurants, and food service businesses.",
-    iconName: "Store"
+    iconName: "Store",
+    image: "/images/products/blue_bahar_packaging.jpg"
   },
   {
     id: "logistics-documentation",
     title: "Logistics & Documentation",
     description: "Complete support for shipping, customs clearance, health certificates, and export documentation.",
     iconName: "FileCheck2",
+    image: "/images/products/cold_storage_warehouse.jpg",
     features: [
       "Shipping",
       "Customs Clearance",
@@ -216,26 +333,30 @@ export const WHY_BLUE_BAHAR: WhyUsItem[] = [
   }
 ];
 
-// Process Steps
+// 4 Structured Process Steps with Authentic Photos
 export const BUSINESS_PROCESS: ProcessStep[] = [
   {
     number: "01",
     title: "SOURCE",
-    description: "Identifying and establishing reliable food and seafood supply opportunities globally."
+    description: "Direct pond harvest & auditing trusted ocean aquaculture origins across world markets.",
+    image: "/images/products/bulk_field_harvest.jpg"
   },
   {
     number: "02",
     title: "SELECT",
-    description: "Carefully inspecting products that meet stringent UAE and international commercial standards."
+    description: "Strict quality grading and cleanroom inspection meeting stringent international export standards.",
+    image: "/images/products/sterile_shrimp_processing.jpg"
   },
   {
     number: "03",
     title: "TRADE",
-    description: "Managing seamless import, export, cold-chain handling, and documentation logistics."
+    description: "Automated precision packaging, sizing, and temperature-controlled cold chain handling.",
+    image: "/images/products/shrimp_processing_conveyor.jpg"
   },
   {
     number: "04",
     title: "DELIVER",
-    description: "Executing timely commercial delivery to our wholesale, retail, and international trade networks."
+    description: "Multi-modal air freight, ocean reefer shipping, and timely delivery to international partners.",
+    image: "/images/about/blue_bahar_air_freight.jpg"
   }
 ];

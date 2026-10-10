@@ -1,6 +1,6 @@
 import React from 'react';
 import { COMPANY_INFO } from '../data/companyData';
-import { MapPin, Globe, Eye, Target, Building } from 'lucide-react';
+import { MapPin, Globe, Eye, Target, Building, PlaneTakeoff, ShieldCheck } from 'lucide-react';
 
 export const About: React.FC = () => {
   return (
@@ -15,31 +15,62 @@ export const About: React.FC = () => {
         {/* Main 2-Column Editorial Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          {/* LEFT: Large Dubai ocean / marine trading image */}
+          {/* LEFT: Real Official Facility Photos */}
           <div className="lg:col-span-6 relative">
-            <div className="relative rounded-3xl overflow-hidden border border-slate-200 shadow-2xl group">
-              <img
-                src="/images/hero/dubai_ocean.jpg"
-                alt="Dubai Ocean & Marine Logistics Trade"
-                className="w-full h-[520px] object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+            <div className="relative space-y-4">
               
-              {/* Overlay Location Tag */}
-              <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between">
-                <div className="bg-slate-950/90 px-4 py-2.5 rounded-xl text-xs font-bold text-white flex items-center gap-2 border border-cyan-500/30 backdrop-blur-md">
-                  <MapPin className="w-4 h-4 text-cyan-400" />
-                  <span>AL GARHOUD, DUBAI, UAE</span>
-                </div>
-                <div className="text-xs font-bold text-cyan-300 font-arabic bg-slate-950/90 px-3 py-1.5 rounded-lg border border-slate-800">
-                  {COMPANY_INFO.arabicName}
+              {/* Main Executive Inspection Photo */}
+              <div className="relative rounded-3xl overflow-hidden border border-slate-200 shadow-2xl group">
+                <img
+                  src="/images/about/executive_inspection.jpg"
+                  alt="Blue Bahar Management & UAE Partners Inspecting Fresh Seafood"
+                  className="w-full h-[380px] sm:h-[420px] object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+                
+                {/* Overlay Location Tag */}
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                  <div className="bg-slate-950/90 px-3.5 py-2 rounded-xl text-xs font-bold text-white flex items-center gap-2 border border-cyan-500/30 backdrop-blur-md">
+                    <MapPin className="w-3.5 h-3.5 text-cyan-400" />
+                    <span>AL GARHOUD, DUBAI, UAE</span>
+                  </div>
+                  <div className="text-xs font-bold text-cyan-300 font-arabic bg-slate-950/90 px-3 py-1.5 rounded-lg border border-slate-800">
+                    {COMPANY_INFO.arabicName}
+                  </div>
                 </div>
               </div>
+
+              {/* Floating Air Freight Facility Card */}
+              <div className="sm:absolute sm:-bottom-8 sm:-right-6 sm:w-72 bg-white p-3 rounded-2xl border border-slate-200 shadow-2xl space-y-2 backdrop-blur-xl group/card">
+                <div className="relative h-28 rounded-xl overflow-hidden bg-slate-100">
+                  <img
+                    src="/images/about/blue_bahar_air_freight.jpg"
+                    alt="Blue Bahar Air Freight & Cold Chain Seafood Packaging"
+                    className="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute top-2 left-2">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#002d62] text-cyan-300 flex items-center gap-1 shadow-sm">
+                      <PlaneTakeoff className="w-3 h-3" />
+                      AIR FREIGHT
+                    </span>
+                  </div>
+                </div>
+                <div className="px-1 pb-1">
+                  <div className="text-xs font-bold text-slate-900 leading-tight">
+                    Blue Bahar Global Logistics
+                  </div>
+                  <div className="text-[10px] text-slate-500 flex items-center gap-1 mt-0.5 font-medium">
+                    <ShieldCheck className="w-3 h-3 text-emerald-600" />
+                    Insulated Temperature Controlled
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
 
           {/* RIGHT: Editorial Content */}
-          <div className="lg:col-span-6 space-y-6">
+          <div className="lg:col-span-6 space-y-6 lg:pl-4">
             
             {/* Header Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-100 border border-cyan-300 text-cyan-900 text-xs font-extrabold uppercase tracking-widest">

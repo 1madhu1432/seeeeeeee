@@ -10,12 +10,12 @@ interface ServicesProps {
 export const Services: React.FC<ServicesProps> = ({ onEnquire }) => {
   const getIcon = (iconName: string) => {
     switch (iconName) {
-      case 'Ship': return <Ship className="w-6 h-6 text-cyan-400" />;
-      case 'Globe': return <Globe className="w-6 h-6 text-cyan-400" />;
-      case 'Boxes': return <Boxes className="w-6 h-6 text-cyan-400" />;
-      case 'Store': return <Store className="w-6 h-6 text-cyan-400" />;
-      case 'FileCheck2': return <FileCheck2 className="w-6 h-6 text-cyan-400" />;
-      default: return <Anchor className="w-6 h-6 text-cyan-400" />;
+      case 'Ship': return <Ship className="w-5 h-5 text-cyan-400" />;
+      case 'Globe': return <Globe className="w-5 h-5 text-cyan-400" />;
+      case 'Boxes': return <Boxes className="w-5 h-5 text-cyan-400" />;
+      case 'Store': return <Store className="w-5 h-5 text-cyan-400" />;
+      case 'FileCheck2': return <FileCheck2 className="w-5 h-5 text-cyan-400" />;
+      default: return <Anchor className="w-5 h-5 text-cyan-400" />;
     }
   };
 
@@ -59,58 +59,68 @@ export const Services: React.FC<ServicesProps> = ({ onEnquire }) => {
             return (
               <div
                 key={service.id}
-                className={`glass-panel rounded-3xl p-8 border border-slate-800 hover:border-cyan-500/40 transition-all duration-300 space-y-6 group hover:-translate-y-1 flex flex-col justify-between ${
+                className={`glass-panel rounded-3xl overflow-hidden border border-slate-800 hover:border-cyan-500/40 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1 ${
                   isWide ? 'lg:col-span-2 bg-gradient-to-br from-slate-900/90 via-slate-900/60 to-cyan-950/20' : ''
                 }`}
               >
-                <div className="space-y-4">
-                  {/* Visual Header with Icon */}
-                  <div className="flex items-center justify-between">
-                    <div className="w-14 h-14 rounded-2xl bg-cyan-950/80 border border-cyan-500/30 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-cyan-500/10">
-                      {getIcon(service.iconName)}
+                {/* Real Operations Image Banner */}
+                {service.image && (
+                  <div className="relative h-44 overflow-hidden bg-slate-900">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+                    
+                    <div className="absolute top-3 left-3 flex items-center gap-2">
+                      <div className="w-10 h-10 rounded-xl bg-slate-950/90 border border-cyan-500/40 flex items-center justify-center backdrop-blur-md shadow-md">
+                        {getIcon(service.iconName)}
+                      </div>
+                      <span className="text-[10px] font-extrabold tracking-widest text-cyan-400 bg-slate-950/90 px-3 py-1 rounded-full border border-cyan-500/30 backdrop-blur-md">
+                        UAE SERVICE
+                      </span>
                     </div>
-                    <span className="text-[10px] font-extrabold tracking-widest text-cyan-400 bg-slate-900 px-3 py-1 rounded-full border border-slate-800">
-                      UAE TRADING
-                    </span>
                   </div>
+                )}
 
-                  {/* Service Title */}
-                  <div>
-                    <h3 className="text-2xl font-extrabold text-white font-heading group-hover:text-cyan-300 transition-colors uppercase tracking-wide">
+                <div className="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
+                  <div className="space-y-3">
+                    <h3 className="text-xl sm:text-2xl font-extrabold text-white font-heading group-hover:text-cyan-300 transition-colors uppercase tracking-wide">
                       {service.title}
                     </h3>
+
+                    <p className="text-sm text-slate-300 leading-relaxed font-normal">
+                      {service.description}
+                    </p>
+
+                    {/* Feature Bullets (for Logistics & Documentation) */}
+                    {service.features && (
+                      <div className="pt-2">
+                        <div className="text-xs font-bold text-cyan-400 uppercase tracking-wider mb-3">
+                          Complete Support For:
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                          {service.features.map((feature, fIdx) => (
+                            <div key={fIdx} className="flex items-center gap-2 text-xs font-semibold text-slate-200 bg-slate-900/80 px-3 py-2 rounded-xl border border-slate-800">
+                              <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                              <span>{feature}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
 
-                  <p className="text-sm text-slate-300 leading-relaxed font-normal">
-                    {service.description}
-                  </p>
-
-                  {/* Feature Bullets (for Logistics & Documentation) */}
-                  {service.features && (
-                    <div className="pt-2">
-                      <div className="text-xs font-bold text-cyan-400 uppercase tracking-wider mb-3">
-                        Complete Support For:
-                      </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                        {service.features.map((feature, fIdx) => (
-                          <div key={fIdx} className="flex items-center gap-2 text-xs font-semibold text-slate-200 bg-slate-900/80 px-3 py-2 rounded-xl border border-slate-800">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-                            <span>{feature}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Action Button */}
-                <div className="pt-4 border-t border-slate-800/80">
-                  <button
-                    onClick={onEnquire}
-                    className="w-full py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-cyan-300 border border-slate-800 hover:border-cyan-500/40 transition-all text-center"
-                  >
-                    DISCUSS REQUIREMENT
-                  </button>
+                  {/* Action Button */}
+                  <div className="pt-4 border-t border-slate-800/80">
+                    <button
+                      onClick={onEnquire}
+                      className="w-full py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-cyan-300 border border-slate-800 hover:border-cyan-500/40 transition-all text-center"
+                    >
+                      DISCUSS REQUIREMENT
+                    </button>
+                  </div>
                 </div>
               </div>
             );
