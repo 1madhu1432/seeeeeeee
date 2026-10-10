@@ -1,5 +1,6 @@
 import React from 'react';
 import { BUSINESS_PROCESS } from '../data/companyData';
+import type { ProcessStep } from '../data/companyData';
 import { WaveSeparator } from './WaveSeparator';
 import { Waves } from 'lucide-react';
 
@@ -38,7 +39,7 @@ export const Process: React.FC = () => {
 
           {/* 4 Step Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
-            {BUSINESS_PROCESS.map((step, idx) => (
+            {BUSINESS_PROCESS.map((step: ProcessStep, idx: number) => (
               <div
                 key={step.number}
                 className="bg-white rounded-3xl p-8 border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 space-y-4 group hover:-translate-y-2 relative"

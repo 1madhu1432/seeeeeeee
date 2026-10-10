@@ -1,6 +1,6 @@
 import React from 'react';
 import { COMPANY_INFO } from '../data/companyData';
-import { MapPin, Globe, UserCheck, Building } from 'lucide-react';
+import { MapPin, Globe, Eye, Target, Building } from 'lucide-react';
 
 export const About: React.FC = () => {
   return (
@@ -21,7 +21,7 @@ export const About: React.FC = () => {
               <img
                 src="/images/hero/dubai_ocean.jpg"
                 alt="Dubai Ocean & Marine Logistics Trade"
-                className="w-full h-[480px] object-cover group-hover:scale-105 transition-transform duration-700"
+                className="w-full h-[520px] object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
               
@@ -44,59 +44,63 @@ export const About: React.FC = () => {
             {/* Header Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-100 border border-cyan-300 text-cyan-900 text-xs font-extrabold uppercase tracking-widest">
               <Globe className="w-3.5 h-3.5 text-cyan-700" />
-              <span>{COMPANY_INFO.name}</span>
+              <span>ABOUT US</span>
             </div>
 
             {/* Title */}
             <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-950 tracking-tight font-heading leading-tight">
-              Dubai-Based. <br />
-              <span className="text-cyan-700">Globally Connected.</span>
+              Who We <span className="text-cyan-700">Are</span>
             </h2>
 
-            {/* Arabic Name Card */}
-            <div className="p-4 rounded-xl bg-white border border-slate-200 shadow-sm flex items-center justify-between">
-              <div className="text-xs font-extrabold text-slate-500 uppercase tracking-wider">Arabic Company Name</div>
-              <div className="text-xl font-bold text-cyan-900 font-arabic">
-                {COMPANY_INFO.arabicName}
+            {/* Who We Are Description */}
+            <p className="text-base sm:text-lg text-slate-700 leading-relaxed font-normal">
+              {COMPANY_INFO.aboutWhoWeAre}
+            </p>
+
+            {/* Vision and Mission Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+              
+              {/* Vision Card */}
+              <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-shadow space-y-2">
+                <div className="w-10 h-10 rounded-xl bg-cyan-50 border border-cyan-200 flex items-center justify-center text-cyan-700">
+                  <Eye className="w-5 h-5" />
+                </div>
+                <h3 className="text-base font-extrabold text-slate-900 font-heading uppercase tracking-wide">
+                  Our Vision
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                  {COMPANY_INFO.vision}
+                </p>
               </div>
+
+              {/* Mission Card */}
+              <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-shadow space-y-2">
+                <div className="w-10 h-10 rounded-xl bg-cyan-50 border border-cyan-200 flex items-center justify-center text-cyan-700">
+                  <Target className="w-5 h-5" />
+                </div>
+                <h3 className="text-base font-extrabold text-slate-900 font-heading uppercase tracking-wide">
+                  Our Mission
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                  {COMPANY_INFO.mission}
+                </p>
+              </div>
+
             </div>
 
-            {/* Exact Client Supplied Copy Paragraphs */}
-            <p className="text-base sm:text-lg text-slate-800 leading-relaxed font-semibold border-l-4 border-cyan-500 pl-4 py-1">
-              "{COMPANY_INFO.aboutP1}"
-            </p>
-
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-              "{COMPANY_INFO.aboutP2}"
-            </p>
-
-            {/* Executive Management & Location Info Cards */}
-            <div className="pt-4 border-t border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              
-              <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center gap-3.5">
-                <div className="w-10 h-10 rounded-xl bg-cyan-50 border border-cyan-200 flex items-center justify-center text-cyan-700 shrink-0">
-                  <UserCheck className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider">Managing Director</div>
-                  <div className="text-sm font-extrabold text-slate-900 font-heading">
-                    {COMPANY_INFO.managingDirector}
-                  </div>
-                </div>
-              </div>
-
+            {/* UAE Business Hub Badge */}
+            <div className="pt-2">
               <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center gap-3.5">
                 <div className="w-10 h-10 rounded-xl bg-cyan-50 border border-cyan-200 flex items-center justify-center text-cyan-700 shrink-0">
                   <Building className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider">Business Hub</div>
+                  <div className="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider">Trading Hub</div>
                   <div className="text-sm font-extrabold text-slate-900 font-heading">
-                    Al Garhoud, Dubai, UAE
+                    {COMPANY_INFO.address}
                   </div>
                 </div>
               </div>
-
             </div>
 
           </div>

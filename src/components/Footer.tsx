@@ -6,21 +6,17 @@ import { Phone, Mail, MapPin, Globe } from 'lucide-react';
 export const Footer: React.FC = () => {
   const quickLinks = [
     { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
+    { name: 'About Us', href: '#about' },
     { name: 'Products', href: '#products' },
     { name: 'Services', href: '#services' },
-    { name: 'Global Trade', href: '#global-trade' },
-    { name: 'Why Us', href: '#why-us' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Contact Us', href: '#contact' },
   ];
 
   const productCategories = [
-    'Seafood',
-    'Chicken',
-    'Mutton',
-    'Spices',
-    'Vegetables',
-    'Frozen Products'
+    { name: 'Seafood Products', href: '#products' },
+    { name: 'Poultry Products', href: '#products' },
+    { name: 'Meat Products', href: '#products' },
+    { name: 'Agricultural Products', href: '#products' },
   ];
 
   return (
@@ -38,12 +34,17 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-4 space-y-6">
             <Logo size="md" />
 
-            <p className="text-xs font-bold text-cyan-400 uppercase tracking-widest">
-              {COMPANY_INFO.tagline}
-            </p>
+            <div className="space-y-2">
+              <h3 className="text-base font-extrabold text-white font-heading">
+                {COMPANY_INFO.name}
+              </h3>
+              <p className="text-sm font-semibold text-cyan-400 italic">
+                "{COMPANY_INFO.tagline}"
+              </p>
+            </div>
 
             <p className="text-xs text-slate-400 leading-relaxed font-normal max-w-sm">
-              Blue Bahar Trading LLC is a Dubai-based company specializing in import, export, seafood, frozen products and international trading.
+              UAE-based trading company specializing in the import, export, wholesale, and retail distribution of premium food products.
             </p>
           </div>
 
@@ -66,13 +67,13 @@ export const Footer: React.FC = () => {
           {/* Column 3: Products */}
           <div className="lg:col-span-3 space-y-4">
             <h4 className="text-sm font-extrabold text-white uppercase tracking-wider font-heading">
-              Trading Categories
+              Product Categories
             </h4>
             <ul className="space-y-2.5 text-xs font-medium">
               {productCategories.map((cat) => (
-                <li key={cat}>
-                  <a href="#products" className="hover:text-cyan-400 transition-colors">
-                    {cat}
+                <li key={cat.name}>
+                  <a href={cat.href} className="hover:text-cyan-400 transition-colors">
+                    {cat.name}
                   </a>
                 </li>
               ))}
@@ -89,13 +90,9 @@ export const Footer: React.FC = () => {
                 <Phone className="w-4 h-4 text-cyan-400 shrink-0" />
                 <span>{COMPANY_INFO.phones[0]}</span>
               </a>
-              <a href={`tel:${COMPANY_INFO.phones[1].replace(/\s+/g, '')}`} className="flex items-center gap-2.5 hover:text-cyan-400 transition-colors">
-                <Phone className="w-4 h-4 text-cyan-400 shrink-0" />
-                <span>{COMPANY_INFO.phones[1]}</span>
-              </a>
-              <a href={`mailto:${COMPANY_INFO.emails[1]}`} className="flex items-center gap-2.5 hover:text-cyan-400 transition-colors">
+              <a href={`mailto:${COMPANY_INFO.emails[0]}`} className="flex items-center gap-2.5 hover:text-cyan-400 transition-colors">
                 <Mail className="w-4 h-4 text-cyan-400 shrink-0" />
-                <span>{COMPANY_INFO.emails[1]}</span>
+                <span>{COMPANY_INFO.emails[0]}</span>
               </a>
               <a href={`https://${COMPANY_INFO.website}`} target="_blank" rel="noreferrer" className="flex items-center gap-2.5 hover:text-cyan-400 transition-colors">
                 <Globe className="w-4 h-4 text-cyan-400 shrink-0" />
@@ -103,7 +100,7 @@ export const Footer: React.FC = () => {
               </a>
               <div className="flex items-start gap-2.5 text-slate-400">
                 <MapPin className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                <span>Al Garhoud, Dubai, UAE</span>
+                <span>{COMPANY_INFO.address}</span>
               </div>
             </div>
           </div>
@@ -112,7 +109,7 @@ export const Footer: React.FC = () => {
 
         {/* Bottom Copyright */}
         <div className="pt-8 border-t border-slate-900 text-center text-xs text-slate-500 font-medium">
-          © 2026 Blue Bahar Trading LLC. All Rights Reserved.
+          © {new Date().getFullYear()} {COMPANY_INFO.name}. All Rights Reserved.
         </div>
 
       </div>

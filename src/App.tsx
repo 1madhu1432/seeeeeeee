@@ -12,7 +12,7 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 
 export function App() {
-  const [selectedCategoryForEnquiry, setSelectedCategoryForEnquiry] = useState<string>('Seafood');
+  const [selectedCategoryForEnquiry, setSelectedCategoryForEnquiry] = useState<string>('Seafood Products');
 
   const handleOpenContact = (categoryName?: string) => {
     if (categoryName) {
@@ -40,8 +40,10 @@ export function App() {
       <main className="flex-1">
         {/* HERO SECTION */}
         <Hero 
-          onExploreProducts={handleExploreProducts} 
+          onRequestQuote={() => handleOpenContact()} 
           onContactUs={() => handleOpenContact()} 
+          onExploreProducts={handleExploreProducts}
+          onSelectCategory={(categoryName) => handleOpenContact(categoryName)}
         />
 
         {/* ABOUT SECTION */}

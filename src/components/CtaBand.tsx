@@ -36,7 +36,7 @@ export const CtaBand: React.FC<CtaBandProps> = ({ onSendEnquiry }) => {
           </h2>
 
           <p className="text-base sm:text-xl text-slate-200 max-w-2xl mx-auto leading-relaxed">
-            Talk to Blue Bahar Trading LLC about your seafood, frozen products, import or export requirements.
+            Partner with Blue Bahar Trading LLC for reliable seafood, poultry, meat cuts, agricultural products, and international food trading.
           </p>
 
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -44,7 +44,7 @@ export const CtaBand: React.FC<CtaBandProps> = ({ onSendEnquiry }) => {
               onClick={onSendEnquiry}
               className="w-full sm:w-auto px-8 py-4 rounded-xl font-extrabold text-xs uppercase tracking-wider bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-xl shadow-cyan-500/30 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2 group"
             >
-              <span>SEND AN ENQUIRY</span>
+              <span>REQUEST A QUOTE</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
 
